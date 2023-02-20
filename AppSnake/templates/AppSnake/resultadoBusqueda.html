@@ -1,0 +1,13 @@
+
+{% load static %} 
+
+<p>Estamos buscando el medico cuya credencial es: {{credencial}} </p>
+    {% if medicos %} 
+    <ul>
+        {% for medico in medicos %}
+            <li>{{medico.nombre}}</li>
+            <li>{{medico.apellido}}</li>
+            <li>{{medico.credencial}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
