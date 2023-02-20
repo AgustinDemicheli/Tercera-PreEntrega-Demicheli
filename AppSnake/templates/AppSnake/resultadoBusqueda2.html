@@ -1,0 +1,13 @@
+
+{% load static %} 
+
+<p>Estamos buscando el cientifico cuyo apellido es: {{apellido}} </p>
+    {% if cientificos %} 
+    <ul>
+        {% for cientifico in cientificos %}
+            <li>{{cientifico.nombre}}</li>
+            <li>{{cientifico.apellido}}</li>
+            <li>{{cientifico.comision}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}

@@ -5,3 +5,8 @@ class form_medicos(forms.Form):
     credencial= forms.IntegerField(min_value=4)
     interno=forms.IntegerField(min_value=6)
 
+class form_cientificos(forms.Form):
+    nombre= forms.CharField(label='nombre',max_length=20)
+    apellido=forms.CharField()
+    comision= forms.IntegerField(min_value=4)
+    

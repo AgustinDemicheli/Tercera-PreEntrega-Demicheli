@@ -7,7 +7,8 @@ class Cientificos(models.Model):
     apellido= models.CharField(max_length=30)
     comision=models.IntegerField()
     mail=models.EmailField()
-    
+    def __str__(self):
+        return f'Nombre: {self.nombre} - Apellido:{self.apellido} - Comision: {self.comision}'
 class Medicos(models.Model):
     nombre= models.CharField(max_length=30)
     apellido= models.CharField(max_length=30)

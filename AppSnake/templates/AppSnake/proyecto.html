@@ -3,5 +3,10 @@
 {% block contenidoQueCambia %}
 <h1>
     Aquí los médicos y cientificos visitan los proyectos
+    <body>
+        {% for proyecto in proyectos %}
+        <li>{{proyecto}}</li>
+        {% endfor %}
+    </body>
 </h1>
 {% endblock %}

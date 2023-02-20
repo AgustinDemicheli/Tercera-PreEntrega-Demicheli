@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from AppSnake.models import *
 
 #from django.http import HttpResponse
-from AppSnake.forms import form_medicos
+from AppSnake.forms import form_medicos,form_cientificos
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -13,9 +13,6 @@ def inicio(request):
     
     return render(request,'AppSnake/Inicio.html')
 
-def cientificos(request):
-   
-    return render(request,'AppSnake/Cientificos.html')
 
 def medicos(request):
     medicos= Medicos.objects.all()
@@ -50,6 +47,40 @@ def buscar(request):
         medicos=Medicos.objects.filter(credencial__icontains=credencial)
 
         return render(request,"AppSnake/resultadoBusqueda.html",{"medicos":medicos,"credencial":credencial})
+    else:
+        respuesta='No enviaste datos'
+       
+    return HttpResponse(respuesta)
+
+def cientificos(request):
+    cientificos= Cientificos.objects.all()
+    contexto= {"cientificos":cientificos}
+    return render(request,'AppSnake/cientificos.html',contexto)
+ 
+def cientificoFormulario(request):
+    if request.method == "POST":
+        miFormulario=form_cientificos(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion=miFormulario.cleaned_data
+            cientifico= Cientificos(nombre=informacion['nombre'],comision=informacion['comision'],apellido= informacion['apellido'])
+            cientifico.save()
+            return render(request,'AppSnake/inicio.html') 
+    else:
+        miFormulario=form_cientificos()
+    return render(request,'AppSnake/cientificoFormulario.html',{'miFormulario':miFormulario})
+
+def cientificoBusqueda(request):
+    return render(request,'AppSnake/cientificoBusqueda.html',{"cientifico":cientificos})
+
+def buscar2(request):
+    if request.GET["apellido"]:
+
+        apellido=request.GET["apellido"]
+        cientificos=Cientificos.objects.filter(apellido__icontains=apellido)
+
+        return render(request,"AppSnake/resultadoBusqueda2.html",{"cientificos":cientificos,"apellido":apellido})
     else:
         respuesta='No enviaste datos'
        
