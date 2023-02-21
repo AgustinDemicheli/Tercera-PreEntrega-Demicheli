@@ -12,6 +12,7 @@ urlpatterns= [
             path('buscar/',views.buscar),
             path('cientificoFormulario/',views.cientificoFormulario,name='cientificoFormulario'),
             path('cientificoBusqueda/',views.cientificoBusqueda,name='cientificoBusqueda'),
+            path('proyectoFormulario/',views.proyectoFormulario,name="proyectoFormulario"),
             path('buscar2/',views.buscar2),
             
             ]

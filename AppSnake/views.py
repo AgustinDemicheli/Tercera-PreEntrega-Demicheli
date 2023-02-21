@@ -3,11 +3,8 @@ from django.http import HttpResponse
 from AppSnake.models import *
 
 #from django.http import HttpResponse
-from AppSnake.forms import form_medicos,form_cientificos
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-# Create your views here.
+from AppSnake.forms import form_medicos,form_cientificos,form_proyecto
+
 
 def inicio(request):
     
@@ -85,3 +82,12 @@ def buscar2(request):
         respuesta='No enviaste datos'
        
     return HttpResponse(respuesta)
+
+def proyectoFormulario(request):
+    story=Proyecto.objects.all()
+
+    context={
+        'stories':story,
+    }
+
+    return render(request,"AppSnake/proyectoFormulario.html",context)
